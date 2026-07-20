@@ -1,145 +1,200 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Palak ❤️</title>
+    <title>A Message For You ❤️</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            background-color: #faf6f0;
+            color: #2c2c2c;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            padding: 20px;
-            overflow-x: hidden;
+            padding: 20px 10px;
         }
 
-        /* 1. Opening Screen */
-        #welcome-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
+        .container {
             width: 100%;
-            height: 100%;
-            background: #ff758c;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 1.8rem;
-            font-weight: bold;
-            z-index: 999;
-            transition: opacity 1s ease, visibility 1s;
-            text-align: center;
-            padding: 20px;
-        }
-
-        /* 2. Main Card Container */
-        .card {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 30px 20px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(255, 117, 140, 0.3);
-            max-width: 400px;
-            width: 100%;
+            max-width: 420px;
             text-align: center;
             position: relative;
-            z-index: 2;
-            margin-top: 10px;
         }
 
-        /* Envelope Text Section */
-        .envelope-title {
-            color: #ff416c;
-            font-size: 1.5rem;
+        /* Subtitle & Headers */
+        .sub-header {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: #8e8e8e;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .main-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            font-family: 'Georgia', serif;
+            color: #1a1a1a;
             margin-bottom: 10px;
         }
 
-        /* Circular Photos */
-        .photos {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 20px 0;
-        }
-
-        .photos img {
-            width: 85px;
-            height: 85px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #ff758c;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        /* Letter Box with Typing Effect */
-        .letter-box {
-            background: #fff0f3;
-            padding: 20px;
-            border-radius: 15px;
-            text-align: left;
+        .quote {
+            font-style: italic;
+            font-family: 'Georgia', serif;
+            color: #666;
             font-size: 0.95rem;
-            color: #4a4a4a;
-            line-height: 1.6;
             margin-bottom: 25px;
-            min-height: 220px;
-            border: 1px dashed #ff758c;
-            word-wrap: break-word;
         }
 
-        /* Glowing Button */
-        .glow-btn {
-            background: linear-gradient(45deg, #ff416c, #ff4b2b);
-            color: white;
+        /* Seconds Counter Card */
+        .timer-card {
+            background: #ffffff;
+            border: 1px solid #eaeaea;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        }
+
+        .timer-label {
+            font-size: 0.68rem;
+            letter-spacing: 1.5px;
+            color: #8e8e8e;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .timer-count {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #333;
+        }
+
+        /* Message Cards */
+        .card-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .accordion-item {
+            background: #ffffff;
+            border: 1px solid #eaeaea;
+            border-radius: 12px;
+            padding: 16px 20px;
+            text-align: left;
+        }
+
+        .accordion-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #222;
+        }
+
+        .accordion-content {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.5;
+            border-top: 1px dashed #eee;
+            padding-top: 10px;
+        }
+
+        /* Meter Section */
+        .meter-box {
+            background: #ffffff;
+            border: 1px solid #eaeaea;
+            border-radius: 16px;
+            padding: 25px 20px;
+            margin-top: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+
+        .meter-title {
+            font-family: 'Georgia', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+
+        .meter-sub {
+            font-size: 0.75rem;
+            color: #8e8e8e;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .percentage {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #222;
+            margin: 15px 0;
+        }
+
+        .status-text {
+            font-size: 0.8rem;
+            color: #8e8e8e;
+            margin-bottom: 20px;
+        }
+
+        .error-badge {
+            display: none;
+            background: #fff0f3;
+            color: #e63946;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        /* Button */
+        .main-btn {
+            background: #1a1a1a;
+            color: #ffffff;
             border: none;
             padding: 14px 28px;
-            font-size: 1rem;
-            font-weight: bold;
-            border-radius: 30px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
             cursor: pointer;
-            box-shadow: 0 0 20px rgba(255, 65, 108, 0.6);
-            transition: all 0.3s ease;
             width: 100%;
+            transition: transform 0.2s, background 0.3s;
         }
 
-        .glow-btn:hover {
-            transform: scale(1.03);
-            box-shadow: 0 0 30px rgba(255, 65, 108, 0.9);
+        .main-btn:active {
+            transform: scale(0.98);
         }
 
-        /* Final Success Message */
-        #final-message {
+        /* Final View Section */
+        #final-section {
             display: none;
-            font-size: 1.2rem;
-            color: #d63384;
-            font-weight: bold;
-            margin-top: 15px;
-            animation: fadeIn 1s ease-in;
+            margin-top: 30px;
+            animation: fadeIn 0.8s ease;
         }
 
-        /* Floating Hearts Background Animation */
-        .heart {
-            position: fixed;
-            color: #ff4b2b;
-            font-size: 20px;
-            animation: floatUp 4s linear infinite;
-            bottom: -30px;
-            z-index: 1;
-            pointer-events: none;
+        .final-card {
+            background: #ffffff;
+            border: 1px solid #eaeaea;
+            border-radius: 16px;
+            padding: 30px 20px;
         }
 
-        @keyframes floatUp {
-            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        .rose-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
         }
 
         @keyframes fadeIn {
@@ -150,81 +205,107 @@
 </head>
 <body>
 
-    <!-- 1. Opening Screen -->
-    <div id="welcome-screen">
-        For Someone Very Special ❤️
-    </div>
+    <div class="container">
+        
+        <!-- Header -->
+        <p class="sub-header">✦ A MESSAGE FOR YOU ✦</p>
+        <h1 class="main-title">palak</h1>
+        <p class="quote">"There are things I should have said sooner.<br>This is my attempt."</p>
 
-    <!-- 2. Main Apology Card -->
-    <div class="card">
-        <h2 class="envelope-title">Dear Palak ❤️</h2>
-
-        <!-- Circular Photos -->
-        <div class="photos">
-            <img src="yuvraj.jpg" alt="Yuvraj" onerror="this.src='https://ui-avatars.com/api/?name=Yuvraj&background=ff758c&color=fff'">
-            <img src="palak.jpg" alt="Palak" onerror="this.src='https://ui-avatars.com/api/?name=Palak&background=ff416c&color=fff'">
+        <!-- Timer / Counter Card -->
+        <div class="timer-card">
+            <p class="timer-label">SECONDS SINCE I STARTED MISSING YOU</p>
+            <div class="timer-count" id="seconds-count">0</div>
         </div>
 
-        <!-- Typing Letter Box -->
-        <div class="letter-box">
-            <p id="typed-text"></p>
+        <!-- Message Cards -->
+        <div class="card-list">
+            <div class="accordion-item">
+                <div class="accordion-title">I'm sorry for the pain I caused.</div>
+                <div class="accordion-content">Not just sorry I got caught — sorry it happened at all. You deserved softness, always.</div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-title">I would still choose you in every universe.</div>
+                <div class="accordion-content">Every single one. Without hesitation. Always you.</div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-title">Please don't let this be our ending.</div>
+                <div class="accordion-content">We are worth more than this silence. You know we are.</div>
+            </div>
         </div>
 
-        <!-- Button & Final Message -->
-        <button id="chance-btn" class="glow-btn" onclick="acceptApology()">Please Give Me One Chance ❤️</button>
-        <div id="final-message">I Promise I'll Never Stop Trying ❤️</div>
+        <!-- Meter Section -->
+        <div class="meter-box" id="meter-box">
+            <p class="sub-header">✦ COMPLETELY SCIENTIFIC ✦</p>
+            <h3 class="meter-title">The Forgiveness Meter™</h3>
+            <p class="meter-sub">Advanced AI is calculating exactly how much you deserve to be forgiven right now...</p>
+            
+            <div class="percentage" id="meter-percent">0%</div>
+            <div class="error-badge" id="error-badge">⚡ ERROR: TOO MUCH LOVE DETECTED</div>
+            <p class="status-text" id="status-text">Scanning emotional wavelengths...</p>
+
+            <button class="main-btn" id="action-btn" onclick="startMeter()">SCAN FORGIVENESS</button>
+        </div>
+
+        <!-- Final Hidden Card -->
+        <div id="final-section">
+            <div class="final-card">
+                <div class="rose-icon">🌹</div>
+                <h2 style="font-family:'Georgia', serif; font-size: 1.8rem; margin-bottom: 10px;">You are still my favourite</h2>
+                <p style="font-size: 0.9rem; color: #666; font-style: italic; margin-bottom: 20px;">In every version of this life, in every universe that exists — I would still choose you.</p>
+                <p style="font-size: 0.8rem; color: #8e8e8e;">With everything I have, — Yuvraj ❤️</p>
+            </div>
+        </div>
+
     </div>
 
     <script>
-        // Automatic Opening Screen Hide (After 3 Seconds)
-        setTimeout(() => {
-            const welcome = document.getElementById('welcome-screen');
-            welcome.style.opacity = '0';
-            setTimeout(() => {
-                welcome.style.visibility = 'hidden';
-                startTyping();
-            }, 1000);
-        }, 3000);
+        // 1. Live Seconds Counter
+        let seconds = 0;
+        setInterval(() => {
+            seconds++;
+            document.getElementById('seconds-count').innerText = seconds;
+        }, 1000);
 
-        // Typing Effect Letter Text
-        const textToType = `Dear Palak,\n\nI'm truly sorry.\n\nMujhse galti hui aur us baat ka mujhe dil se afsos hai.\nMain excuses nahi dena chahta.\nBas itna kehna chahta hoon ki tum meri life ka sabse important hissa ho.\n\nPlease ek last chance de do.\nMain apne actions se prove karunga ki main better insaan ban sakta hoon.\n\nI Miss You.\n\nForever Yours,\nYuvraj ❤️`;
+        // 2. Forgiveness Meter Animation
+        function startMeter() {
+            let btn = document.getElementById('action-btn');
+            let percentText = document.getElementById('meter-percent');
+            let statusText = document.getElementById('status-text');
+            let errorBadge = document.getElementById('error-badge');
+            let finalSection = document.getElementById('final-section');
 
-        let index = 0;
-        function startTyping() {
-            if (index < textToType.length) {
-                let char = textToType.charAt(index);
-                document.getElementById("typed-text").innerHTML += (char === '\n') ? '<br>' : char;
-                index++;
-                setTimeout(startTyping, 35);
-            }
+            btn.style.display = 'none';
+
+            let count = 0;
+            let interval = setInterval(() => {
+                count += Math.floor(Math.random() * 5) + 2;
+                if (count > 99) {
+                    count = 99;
+                    clearInterval(interval);
+                    
+                    // Show Error State
+                    setTimeout(() => {
+                        percentText.innerText = "???%";
+                        percentText.style.color = "#e63946";
+                        errorBadge.style.display = "inline-block";
+                        statusText.innerText = "System Overload: Cuteness & Love Limit Exceeded!";
+                        
+                        // Show Final Card
+                        setTimeout(() => {
+                            finalSection.style.display = "block";
+                            finalSection.scrollIntoView({ behavior: 'smooth' });
+                        }, 1200);
+
+                    }, 800);
+                } else {
+                    percentText.innerText = count + "%";
+                }
+            }, 60);
         }
-
-        // Action when Button Clicked
-        function acceptApology() {
-            document.getElementById("chance-btn").style.display = "none";
-            document.getElementById("final-message").style.display = "block";
-
-            // Burst of hearts
-            for(let i = 0; i < 40; i++) {
-                setTimeout(createHeart, i * 50);
-            }
-        }
-
-        // Floating Hearts Logic
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.innerHTML = '❤️';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
-            heart.style.animationDuration = (Math.random() * 2 + 2) + 's';
-            document.body.appendChild(heart);
-
-            setTimeout(() => heart.remove(), 4000);
-        }
-
-        // Continuous light background hearts
-        setInterval(createHeart, 600);
     </script>
+
 </body>
 </html>
