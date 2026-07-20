@@ -3,92 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Palak ❤️</title>
+    <title>For My Palak ❤️</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
 
         body {
-            background-color: #fff0f3;
+            background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
             color: #2c2c2c;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px 15px;
-            overflow-x: hidden;
+            padding: 10px;
+            overflow: hidden; /* Prevent scrolling during animations */
         }
 
-        .container {
+        /* 1. START SCREEN: CARTOON ENVELOPE */
+        #start-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            max-width: 400px;
-            text-align: center;
-        }
-
-        /* SCREEN 1: ENVELOPE LETTER */
-        #screen-1 {
+            height: 100%;
+            background: #ff758c;
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            z-index: 999;
             cursor: pointer;
+            transition: all 0.6s ease;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .envelope-wrap {
+            position: relative;
             animation: bounce 2s infinite ease-in-out;
         }
 
         .envelope {
-            width: 140px;
-            height: 100px;
-            background: #ff758c;
-            border-radius: 10px;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 10px 25px rgba(255, 117, 140, 0.4);
+            font-size: 8rem;
         }
 
-        .envelope-heart {
-            font-size: 2.5rem;
-        }
-
-        .tap-text {
-            margin-top: 20px;
-            font-size: 0.95rem;
-            color: #ff4757;
+        .tap-msg {
+            margin-top: 15px;
+            font-size: 1.1rem;
+            color: white;
             font-weight: 600;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
-        /* SCREEN 2: MAIN CONTENT */
-        #screen-2 {
+        /* 2. MAIN CONTENT SCREEN */
+        #main-screen {
             display: none;
-            animation: fadeIn 1s ease-in;
-        }
-
-        .title-sub {
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            color: #8e8e8e;
-            text-transform: uppercase;
+            width: 100%;
+            max-width: 390px;
+            animation: fadeIn 1.2s ease;
+            text-align: center;
+            position: relative;
         }
 
         .title-main {
             font-size: 2.2rem;
-            font-family: 'Georgia', serif;
-            color: #2b2b2b;
-            margin: 5px 0 15px 0;
+            font-family: 'Pacifico', cursive; /* Optional: For curly font */
+            color: #ff4d6d;
+            margin-bottom: 20px;
         }
 
-        /* Photo Frame */
+        /* Circular Photos */
         .photo-gallery {
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .photo-gallery img {
@@ -97,167 +90,196 @@
             border-radius: 50%;
             object-fit: cover;
             border: 4px solid #ffffff;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
         }
 
-        /* Counter Box */
+        /* Counter Card */
         .box {
             background: #ffffff;
             border-radius: 16px;
-            padding: 18px;
-            margin-bottom: 18px;
+            padding: 20px;
+            margin-bottom: 20px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border: 1px solid #ffe4e6;
         }
 
         .timer-val {
             font-size: 2rem;
             font-weight: 700;
-            color: #ff4757;
+            color: #ff4d6d;
             margin-top: 5px;
         }
 
-        /* Interactive Question */
+        /* Prank Question with Runaway NO button */
         .question-box {
+            position: relative;
             background: #ffffff;
             border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 18px;
+            padding: 25px 20px;
+            margin-bottom: 20px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
         }
 
-        .btn-group {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin-top: 15px;
-        }
-
         .btn {
-            background: #ff4757;
+            background: #ff4d6d;
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 20px;
+            padding: 12px 25px;
+            border-radius: 25px;
             font-weight: 600;
             cursor: pointer;
-            transition: 0.2s;
+            transition: transform 0.2s;
+            margin: 5px;
+            font-size: 0.9rem;
         }
 
         .btn-no {
             background: #e0e0e0;
             color: #555;
+            position: relative; /* Fixed runway issue */
+            z-index: 10;
         }
 
         /* Meter Box */
         .meter-percent {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 800;
-            color: #ff4757;
-            margin: 10px 0;
+            color: #ff4d6d;
+            margin: 15px 0;
         }
 
-        /* SCREEN 3: CUTEST FINAL ANIMATION */
-        #screen-3 {
+        /* HEART RAIN EFFECT */
+        #heart-rain {
             display: none;
-            animation: fadeIn 1s ease-in;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
         }
 
-        .cute-gif {
-            width: 220px;
-            height: 220px;
-            object-fit: contain;
-            border-radius: 20px;
-            margin-bottom: 15px;
-        }
-
-        .final-msg {
-            font-family: 'Georgia', serif;
+        .heart-particle {
+            position: absolute;
+            color: #ff758c;
             font-size: 1.5rem;
-            color: #ff4757;
-            margin-bottom: 10px;
+            animation: fall 3s linear;
         }
 
-        .final-sub {
-            font-size: 0.9rem;
-            color: #666;
-            line-height: 1.5;
-            margin-bottom: 15px;
+        /* 3. FINAL CUTEST SCREEN */
+        #final-screen {
+            display: none;
+            width: 100%;
+            max-width: 390px;
+            text-align: center;
+            animation: fadeIn 1.2s ease;
         }
 
+        .final-gif {
+            width: 250px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .final-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid #ffe4e6;
+        }
+
+        /* Animations */
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-12px); }
         }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+
     </style>
 </head>
 <body>
 
-    <div class="container">
-
-        <!-- STEP 1: ENVELOPE / LETTER SCREEN -->
-        <div id="screen-1" onclick="openLetter()">
-            <div class="envelope">
-                <div class="envelope-heart">💌</div>
-            </div>
-            <p class="tap-text">A Special Letter For Palak ❤️<br><span style="font-size: 0.8rem; color: #8e8e8e;">(Tap to Open)</span></p>
+    <!-- 1. Cartoon Start Screen -->
+    <div id="start-screen" onclick="beginAdventure()">
+        <div class="envelope-wrap">
+            <span class="envelope">💌</span>
         </div>
-
-        <!-- STEP 2: MAIN INTERACTIVE PAGE -->
-        <div id="screen-2">
-            <p class="title-sub">✦ FOR MY FAVOURITE PERSON ✦</p>
-            <h1 class="title-main">Palak ❤️</h1>
-
-            <!-- Photos -->
-            <div class="photo-gallery">
-                <img src="yuvraj.jpg" alt="Yuvraj" onerror="this.src='https://ui-avatars.com/api/?name=Yuvraj&background=ff758c&color=fff'">
-                <img src="palak.jpg" alt="Palak" onerror="this.src='https://ui-avatars.com/api/?name=Palak&background=ff416c&color=fff'">
-            </div>
-
-            <!-- Seconds Missing Timer -->
-            <div class="box">
-                <p style="font-size: 0.7rem; color: #8e8e8e; letter-spacing: 1px;">SECONDS SINCE I STARTED MISSING YOU</p>
-                <div class="timer-val" id="timer">0</div>
-            </div>
-
-            <!-- Cute Interactive Question -->
-            <div class="question-box" id="q-box">
-                <p style="font-weight: 600; font-size: 0.95rem;">Are you still mad at me? 🥺</p>
-                <div class="btn-group">
-                    <button class="btn" onclick="answerQuestion('yes')">A Little Bit 😤</button>
-                    <button class="btn btn-no" id="no-btn" onclick="answerQuestion('no')">Not Anymore 🥰</button>
-                </div>
-            </div>
-
-            <!-- Forgiveness Meter -->
-            <div class="box" id="meter-box" style="display: none;">
-                <p style="font-size: 0.75rem; color: #8e8e8e;">✦ SCIENTIFIC CALCULATION ✦</p>
-                <h3 style="font-family: 'Georgia', serif; margin-top: 5px;">Forgiveness Meter™</h3>
-                <div class="meter-percent" id="meter-text">0%</div>
-                <p id="meter-status" style="font-size: 0.8rem; color: #8e8e8e; margin-bottom: 15px;">Calculating love & cuteness levels...</p>
-                <button class="btn" id="scan-btn" onclick="runMeter()">SCAN NOW</button>
-            </div>
-        </div>
-
-        <!-- STEP 3: CUTEST KAN PAKAD KE SORRY + KISS ANIMATION -->
-        <div id="screen-3">
-            <img class="cute-gif" src="https://media.tenor.com/4N3O9iLhFGEAAAAC/sorry-cute.gif" alt="Sorry Cute Animation">
-            <h2 class="final-msg">Mela Bachha, I'm So Sorry! 🥺❤️</h2>
-            <p class="final-sub">Kaan pakad ke sorry bol raha hu! Ab toh gussa chhod do aur ek pyaari si smile de do... 😘💋</p>
-            <p style="font-size: 0.85rem; font-weight: 600; color: #ff4757;">Forever Yours, — Yuvraj ❤️</p>
-        </div>
-
+        <p class="tap-msg">Special Delivery For My Palak! ❤️<br>(Tap to Open)</p>
     </div>
 
+    <!-- Heart Rain Container -->
+    <div id="heart-rain"></div>
+
+    <!-- 2. Main Interactivity Screen -->
+    <div id="main-screen">
+        <h1 class="title-main">Hi Palak! ❤️</h1>
+
+        <div class="photo-gallery">
+            <img src="yuvraj.jpg" alt="Yuvraj" onerror="this.src='https://ui-avatars.com/api/?name=Y&background=ff758c&color=fff'">
+            <img src="palak.jpg" alt="Palak" onerror="this.src='https://ui-avatars.com/api/?name=P&background=ff4d6d&color=fff'">
+        </div>
+
+        <div class="box">
+            <p style="font-size: 0.75rem; color: #8e8e8e; letter-spacing: 1px; font-weight: 600;">SECONDS I'VE SPENT MISSING YOU</p>
+            <div class="timer-val" id="timer">0</div>
+        </div>
+
+        <!-- Prank Question -->
+        <div class="question-box" id="q-box">
+            <p style="font-weight: 600; margin-bottom: 15px; font-size: 1.1rem;">Are you still mad at me? 🥺</p>
+            <button class="btn" onclick="answer('yes')">Yes, big time! 😤</button>
+            <button class="btn btn-no" id="no-btn" onmouseover="runAway(this)" onclick="answer('no')">Not Anymore 🥰</button>
+        </div>
+
+        <!-- Meter Box -->
+        <div class="box" id="meter-box" style="display: none;">
+            <p style="font-size: 0.75rem; color: #8e8e8e;">✦ SCIENTIFIC CALCULATION ✦</p>
+            <h3 style="font-family:'Georgia', serif; font-size: 1.3rem; font-style: italic; margin-top: 5px;">Forgiveness Meter™</h3>
+            <div class="meter-percent" id="meter-text">0%</div>
+            <p id="meter-status" style="font-size: 0.8rem; color: #8e8e8e; margin-bottom: 15px;">Analyzing cuteness & emotional damage...</p>
+            <button class="btn" id="scan-btn" onclick="runMeter()">SCAN FORGIVENESS</button>
+        </div>
+    </div>
+
+    <!-- 3. Final Cartoon Animation Screen -->
+    <div id="final-screen">
+        <!-- Cute Cartoon GIF: Kaan Pakad Ke Sorry + Kiss -->
+        <img class="final-gif" src="https://media.tenor.com/4N3O9iLhFGEAAAAC/sorry-cute.gif" alt="Sorry Cartoon Animation">
+        
+        <div class="final-card">
+            <h2 style="font-family:'Georgia', serif; font-size: 1.7rem; color: #ff4d6d; margin-bottom: 15px;">I'm SO Sorry! 🥺❤️</h2>
+            <p style="font-size: 0.9rem; color: #666; line-height: 1.5; font-style: italic; margin-bottom: 15px;">Kaan pakad ke sorry bol raha hu, mela bachha! 🥺 Please ab gussa chhod do aur ek pyaari si smile de do... I miss you like crazy!</p>
+            <p style="font-size: 0.85rem; font-weight: 700; color: #ff4d6d;">Forever and always, Yours — Yuvraj ❤️</p>
+        </div>
+    </div>
+
+    <!-- Optional: Background Music -->
+    <audio id="bg-music" loop>
+        <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_51199a9a3b.mp3" type="audio/mpeg">
+    </audio>
+
     <script>
-        // 1. Envelope Open
-        function openLetter() {
-            document.getElementById('screen-1').style.display = 'none';
-            document.getElementById('screen-2').style.display = 'block';
+        // 1. Begin Adventure
+        function beginAdventure() {
+            document.getElementById('start-screen').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('start-screen').style.display = 'none';
+                document.getElementById('main-screen').style.display = 'block';
+                // Try to play music (might need browser consent)
+                document.getElementById('bg-music').play().catch(()=>{console.log("Music blocked by browser")});
+            }, 600);
         }
 
         // 2. Timer Counter
@@ -267,15 +289,30 @@
             document.getElementById('timer').innerText = sec;
         }, 1000);
 
-        // 3. Question Logic
-        function answerQuestion(ans) {
+        // 3. Prank: Runway "NO" Button
+        function runAway(btn) {
+            const container = document.getElementById('q-box');
+            const contRect = container.getBoundingClientRect();
+            
+            // Generate random positions within the question box
+            const x = Math.random() * (contRect.width - btn.offsetWidth);
+            const y = Math.random() * (contRect.height - btn.offsetHeight);
+            
+            // Set new positions
+            btn.style.position = 'absolute';
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+
+        // 4. Question Answer
+        function answer(ans) {
             let qBox = document.getElementById('q-box');
             let meterBox = document.getElementById('meter-box');
             
             if(ans === 'yes') {
-                qBox.innerHTML = "<p style='color:#ff4757; font-weight:600;'>Oh no! Let's check how much forgiveness is needed... 👇</p>";
+                qBox.innerHTML = "<p style='color:#ff4d6d; font-weight:600;'>Let's see if the Meter can fix that big gussa... 👇</p>";
             } else {
-                qBox.innerHTML = "<p style='color:#2ed573; font-weight:600;'>Yay! But wait, let's test the Meter anyway! 🥰👇</p>";
+                qBox.innerHTML = "<p style='color:#2ed573; font-weight:600;'>Yay! But let's check the Meter anyway! 🥰👇</p>";
             }
             
             setTimeout(() => {
@@ -284,7 +321,23 @@
             }, 500);
         }
 
-        // 4. Forgiveness Meter & Final Animation Trigger
+        // 5. Heart Rain Animation
+        function startHeartRain() {
+            const rainCont = document.getElementById('heart-rain');
+            rainCont.style.display = 'block';
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('span');
+                    heart.className = 'heart-particle';
+                    heart.innerText = '❤️';
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    rainCont.appendChild(heart);
+                    setTimeout(() => heart.remove(), 3000);
+                }, i * 50);
+            }
+        }
+
+        // 6. Forgiveness Meter & Finale Trigger
         function runMeter() {
             let scanBtn = document.getElementById('scan-btn');
             let meterText = document.getElementById('meter-text');
@@ -292,26 +345,30 @@
             
             scanBtn.style.display = 'none';
             
+            // Start heart rain waterfall
+            startHeartRain();
+            
             let val = 0;
-            let timer = setInterval(() => {
-                val += Math.floor(Math.random() * 6) + 3;
+            let mTimer = setInterval(() => {
+                val += Math.floor(Math.random() * 5) + 3;
                 if(val >= 100) {
                     val = 100;
-                    clearInterval(timer);
+                    clearInterval(mTimer);
                     
                     meterText.innerText = "100%";
                     meterText.style.color = "#2ed573";
-                    statusText.innerText = "⚡ OVERLOAD: 100% Forgiveness Required!";
+                    statusText.innerText = "⚡ ERROR: Love Limit & Cuteness Levels Overloaded!";
                     
-                    // Show Cute Finale Screen
+                    // Show Cutest Finale Screen
                     setTimeout(() => {
-                        document.getElementById('screen-2').style.display = 'none';
-                        document.getElementById('screen-3').style.display = 'block';
+                        document.getElementById('main-screen').style.display = 'none';
+                        document.getElementById('final-screen').style.display = 'block';
+                        document.getElementById('heart-rain').style.display = 'none';
                     }, 1200);
                 } else {
                     meterText.innerText = val + "%";
                 }
-            }, 50);
+            }, 60);
         }
     </script>
 
