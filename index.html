@@ -3,374 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Palak ❤️</title>
+    <title>For My Malkin Ji ❤️</title>
+    <!-- Confetti Library for Finale -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background: #fff0f3; color: #2c2c2c; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 15px; }
+        .container { width: 100%; max-width: 400px; text-align: center; }
 
-        body {
-            background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
-            color: #2c2c2c;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 10px;
-            overflow: hidden; /* Prevent scrolling during animations */
-        }
+        /* Step 1: Envelope */
+        #screen-1 { cursor: pointer; animation: bounce 2s infinite ease-in-out; }
+        .envelope-card { background: #ff758c; padding: 30px 20px; border-radius: 20px; color: white; box-shadow: 0 10px 25px rgba(255,117,140,0.4); }
 
-        /* 1. START SCREEN: CARTOON ENVELOPE */
-        #start-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #ff758c;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 999;
-            cursor: pointer;
-            transition: all 0.6s ease;
-            text-align: center;
-            padding: 20px;
-        }
+        /* Step 2: Main Content */
+        #screen-2 { display: none; animation: fadeIn 0.8s ease; }
+        
+        .main-pic { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 4px solid #ff758c; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .cg-line { font-size: 1.1rem; font-weight: 700; color: #d63384; margin: 12px 0 20px 0; line-height: 1.4; background: #fff; padding: 12px; border-radius: 12px; border: 1px dashed #ff758c; }
 
-        .envelope-wrap {
-            position: relative;
-            animation: bounce 2s infinite ease-in-out;
-        }
+        /* Photo Gallery Grid (6 Photos) */
+        .photo-grid-title { font-size: 0.85rem; font-weight: 700; color: #ff4757; letter-spacing: 1px; margin-bottom: 8px; }
+        .photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 20px; }
+        .photo-grid img { width: 100%; height: 95px; object-fit: cover; border-radius: 12px; border: 2px solid #ffffff; box-shadow: 0 3px 8px rgba(0,0,0,0.08); transition: transform 0.2s; }
+        .photo-grid img:hover { transform: scale(1.05); }
 
-        .envelope {
-            font-size: 8rem;
-        }
+        .card { background: #ffffff; border-radius: 16px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.04); text-align: left; }
+        .card-title { text-align: center; font-size: 1.2rem; color: #ff4757; font-weight: 700; margin-bottom: 10px; }
+        .gif-sticker { width: 120px; display: block; margin: 10px auto; border-radius: 10px; }
 
-        .tap-msg {
-            margin-top: 15px;
-            font-size: 1.1rem;
-            color: white;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
+        .btn { background: #ff4757; color: white; border: none; padding: 12px 24px; border-radius: 25px; font-weight: 600; cursor: pointer; font-size: 0.95rem; margin: 5px; }
+        .btn-no { background: #e0e0e0; color: #555; position: relative; }
 
-        /* 2. MAIN CONTENT SCREEN */
-        #main-screen {
-            display: none;
-            width: 100%;
-            max-width: 390px;
-            animation: fadeIn 1.2s ease;
-            text-align: center;
-            position: relative;
-        }
+        /* Step 3: Full Screen Finale */
+        #screen-3 { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 240, 243, 0.98); z-index: 999; flex-direction: column; justify-content: center; align-items: center; padding: 20px; text-align: center; animation: popUp 0.5s ease; }
+        .finale-title { font-size: 2.2rem; color: #ff4757; font-weight: 800; margin-bottom: 15px; }
 
-        .title-main {
-            font-size: 2.2rem;
-            font-family: 'Pacifico', cursive; /* Optional: For curly font */
-            color: #ff4d6d;
-            margin-bottom: 20px;
-        }
-
-        /* Circular Photos */
-        .photo-gallery {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
-        .photo-gallery img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #ffffff;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
-
-        /* Counter Card */
-        .box {
-            background: #ffffff;
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            border: 1px solid #ffe4e6;
-        }
-
-        .timer-val {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #ff4d6d;
-            margin-top: 5px;
-        }
-
-        /* Prank Question with Runaway NO button */
-        .question-box {
-            position: relative;
-            background: #ffffff;
-            border-radius: 16px;
-            padding: 25px 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-        }
-
-        .btn {
-            background: #ff4d6d;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 25px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s;
-            margin: 5px;
-            font-size: 0.9rem;
-        }
-
-        .btn-no {
-            background: #e0e0e0;
-            color: #555;
-            position: relative; /* Fixed runway issue */
-            z-index: 10;
-        }
-
-        /* Meter Box */
-        .meter-percent {
-            font-size: 2.8rem;
-            font-weight: 800;
-            color: #ff4d6d;
-            margin: 15px 0;
-        }
-
-        /* HEART RAIN EFFECT */
-        #heart-rain {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 100;
-        }
-
-        .heart-particle {
-            position: absolute;
-            color: #ff758c;
-            font-size: 1.5rem;
-            animation: fall 3s linear;
-        }
-
-        /* 3. FINAL CUTEST SCREEN */
-        #final-screen {
-            display: none;
-            width: 100%;
-            max-width: 390px;
-            text-align: center;
-            animation: fadeIn 1.2s ease;
-        }
-
-        .final-gif {
-            width: 250px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-
-        .final-card {
-            background: #ffffff;
-            border-radius: 20px;
-            padding: 30px 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            border: 1px solid #ffe4e6;
-        }
-
-        /* Animations */
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fall {
-            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-        }
-
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes popUp { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
     </style>
 </head>
 <body>
 
-    <!-- 1. Cartoon Start Screen -->
-    <div id="start-screen" onclick="beginAdventure()">
-        <div class="envelope-wrap">
-            <span class="envelope">💌</span>
-        </div>
-        <p class="tap-msg">Special Delivery For My Palak! ❤️<br>(Tap to Open)</p>
-    </div>
-
-    <!-- Heart Rain Container -->
-    <div id="heart-rain"></div>
-
-    <!-- 2. Main Interactivity Screen -->
-    <div id="main-screen">
-        <h1 class="title-main">Hi Palak! ❤️</h1>
-
-        <div class="photo-gallery">
-            <img src="yuvraj.jpg" alt="Yuvraj" onerror="this.src='https://ui-avatars.com/api/?name=Y&background=ff758c&color=fff'">
-            <img src="palak.jpg" alt="Palak" onerror="this.src='https://ui-avatars.com/api/?name=P&background=ff4d6d&color=fff'">
-        </div>
-
-        <div class="box">
-            <p style="font-size: 0.75rem; color: #8e8e8e; letter-spacing: 1px; font-weight: 600;">SECONDS I'VE SPENT MISSING YOU</p>
-            <div class="timer-val" id="timer">0</div>
-        </div>
-
-        <!-- Prank Question -->
-        <div class="question-box" id="q-box">
-            <p style="font-weight: 600; margin-bottom: 15px; font-size: 1.1rem;">Are you still mad at me? 🥺</p>
-            <button class="btn" onclick="answer('yes')">Yes, big time! 😤</button>
-            <button class="btn btn-no" id="no-btn" onmouseover="runAway(this)" onclick="answer('no')">Not Anymore 🥰</button>
-        </div>
-
-        <!-- Meter Box -->
-        <div class="box" id="meter-box" style="display: none;">
-            <p style="font-size: 0.75rem; color: #8e8e8e;">✦ SCIENTIFIC CALCULATION ✦</p>
-            <h3 style="font-family:'Georgia', serif; font-size: 1.3rem; font-style: italic; margin-top: 5px;">Forgiveness Meter™</h3>
-            <div class="meter-percent" id="meter-text">0%</div>
-            <p id="meter-status" style="font-size: 0.8rem; color: #8e8e8e; margin-bottom: 15px;">Analyzing cuteness & emotional damage...</p>
-            <button class="btn" id="scan-btn" onclick="runMeter()">SCAN FORGIVENESS</button>
-        </div>
-    </div>
-
-    <!-- 3. Final Cartoon Animation Screen -->
-    <div id="final-screen">
-        <!-- Cute Cartoon GIF: Kaan Pakad Ke Sorry + Kiss -->
-        <img class="final-gif" src="https://media.tenor.com/4N3O9iLhFGEAAAAC/sorry-cute.gif" alt="Sorry Cartoon Animation">
-        
-        <div class="final-card">
-            <h2 style="font-family:'Georgia', serif; font-size: 1.7rem; color: #ff4d6d; margin-bottom: 15px;">I'm SO Sorry! 🥺❤️</h2>
-            <p style="font-size: 0.9rem; color: #666; line-height: 1.5; font-style: italic; margin-bottom: 15px;">Kaan pakad ke sorry bol raha hu, mela bachha! 🥺 Please ab gussa chhod do aur ek pyaari si smile de do... I miss you like crazy!</p>
-            <p style="font-size: 0.85rem; font-weight: 700; color: #ff4d6d;">Forever and always, Yours — Yuvraj ❤️</p>
-        </div>
-    </div>
-
-    <!-- Optional: Background Music -->
-    <audio id="bg-music" loop>
+    <!-- Background Music -->
+    <audio id="bg-music" loop preload="auto">
         <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_51199a9a3b.mp3" type="audio/mpeg">
     </audio>
 
+    <div class="container">
+
+        <!-- SCREEN 1: ENVELOPE -->
+        <div id="screen-1" onclick="openEnvelope()">
+            <div class="envelope-card">
+                <div style="font-size: 4rem;">💌</div>
+                <h3 style="margin-top: 10px;">For My Dearest Palak ❤️</h3>
+                <p style="font-size: 0.85rem; opacity: 0.9; margin-top: 5px;">(Tap to Open)</p>
+            </div>
+        </div>
+
+        <!-- SCREEN 2: MAIN FLOW -->
+        <div id="screen-2">
+            
+            <!-- Palak Main Photo & Special CG Line -->
+            <img class="main-pic" src="palak.jpg" alt="Palak" onerror="this.src='https://ui-avatars.com/api/?name=Palak&background=ff758c&color=fff'">
+            <div class="cg-line">
+                "तोला बिक्कट मया करथव जी मोला माफ कर दव जी mor Malkin ji" ❤️
+            </div>
+
+            <!-- 6 Photos Gallery Section -->
+            <div style="background: #ffffff; padding: 15px; border-radius: 16px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.04);">
+                <p class="photo-grid-title">✦ MY FAVORITE MEMORIES OF YOU 📸 ✦</p>
+                <div class="photo-grid">
+                    <img src="palak1.jpg" alt="Palak 1" onerror="this.src='https://ui-avatars.com/api/?name=P1&background=ff758c&color=fff'">
+                    <img src="palak2.jpg" alt="Palak 2" onerror="this.src='https://ui-avatars.com/api/?name=P2&background=ff4757&color=fff'">
+                    <img src="palak3.jpg" alt="Palak 3" onerror="this.src='https://ui-avatars.com/api/?name=P3&background=ff758c&color=fff'">
+                    <img src="palak4.jpg" alt="Palak 4" onerror="this.src='https://ui-avatars.com/api/?name=P4&background=ff4757&color=fff'">
+                    <img src="palak5.jpg" alt="Palak 5" onerror="this.src='https://ui-avatars.com/api/?name=P5&background=ff758c&color=fff'">
+                    <img src="palak6.jpg" alt="Palak 6" onerror="this.src='https://ui-avatars.com/api/?name=P6&background=ff4757&color=fff'">
+                </div>
+            </div>
+
+            <!-- Apology Letter Card -->
+            <div class="card">
+                <h3 class="card-title">Milk & Mocha Apology 🥺</h3>
+                <img class="gif-sticker" src="https://media.tenor.com/4N3O9iLhFGEAAAAC/sorry-cute.gif" alt="Milk & Mocha Sorry">
+                <p style="font-size: 0.9rem; color: #555; line-height: 1.5; text-align: center;">
+                    I know maine mistake kar di... Lekin mera dil sirf aapke liye hi dhadakta hai. Please gussa chhod do na!
+                </p>
+            </div>
+
+            <!-- Future Wife Section -->
+            <div class="card">
+                <h3 class="card-title">To My Future Wife 💍❤️</h3>
+                <div style="display: flex; justify-content: center; gap: 10px; margin: 10px 0;">
+                    <img src="yuvraj.jpg" style="width: 65px; height: 65px; border-radius: 50%; object-fit: cover;" onerror="this.src='https://ui-avatars.com/api/?name=Y'">
+                    <img src="palak.jpg" style="width: 65px; height: 65px; border-radius: 50%; object-fit: cover;" onerror="this.src='https://ui-avatars.com/api/?name=P'">
+                </div>
+                <p style="font-size: 0.85rem; color: #555; line-height: 1.5; text-align: center;">
+                    In every life, in every universe — I choose you to be my partner. You mean everything to me, Palak!
+                </p>
+            </div>
+
+            <!-- Prank Question Box -->
+            <div class="card" style="text-align: center;">
+                <p style="font-weight: 700; font-size: 1rem; margin-bottom: 10px;" id="q-text">Are you still mad at me? 🥺</p>
+                <button class="btn" onclick="showMeter()">Nhi / Thoda Sa 😤</button>
+                <button class="btn btn-no" id="no-btn" onclick="noTapPrank()">NO 😜</button>
+            </div>
+
+            <!-- Forgiveness Scan Meter -->
+            <div class="card" id="meter-box" style="display: none; text-align: center;">
+                <h3 style="font-size: 1.1rem; color: #d63384;">Forgiveness Scan Meter™</h3>
+                <div style="font-size: 2.5rem; font-weight: 800; color: #ff4757; margin: 10px 0;" id="m-percent">0%</div>
+                <button class="btn" id="scan-btn" onclick="startScan()">START SCAN</button>
+            </div>
+
+            <!-- Final Forgive Button -->
+            <div id="final-btn-section" style="display: none; margin-top: 15px;">
+                <button class="btn" style="background: #2ed573; width: 100%; font-size: 1.1rem; padding: 15px;" onclick="forgiveSuccess()">
+                    Haan Maaf Krr Di 😘❤️
+                </button>
+            </div>
+
+        </div>
+
+        <!-- SCREEN 3: FULL SCREEN HAPPY POPUP -->
+        <div id="screen-3">
+            <img style="width: 150px; border-radius: 15px; margin-bottom: 15px;" src="https://media.tenor.com/1G6f4E3X7kAAAAAC/milk-and-mocha.gif" alt="Milk & Mocha Hug">
+            <h1 class="finale-title">Thank you laaddoo 😘❤️</h1>
+            <p style="font-size: 1rem; color: #666; font-weight: 600;">You are the best! I love you so much Malkin Ji! 🌹✨</p>
+            <p style="margin-top: 20px; font-weight: 700; color: #ff4757;">Forever Yours, — Yuvraj ❤️</p>
+        </div>
+
+    </div>
+
     <script>
-        // 1. Begin Adventure
-        function beginAdventure() {
-            document.getElementById('start-screen').style.opacity = '0';
-            setTimeout(() => {
-                document.getElementById('start-screen').style.display = 'none';
-                document.getElementById('main-screen').style.display = 'block';
-                // Try to play music (might need browser consent)
-                document.getElementById('bg-music').play().catch(()=>{console.log("Music blocked by browser")});
-            }, 600);
+        // 1. Open Envelope
+        function openEnvelope() {
+            document.getElementById('screen-1').style.display = 'none';
+            document.getElementById('screen-2').style.display = 'block';
+            document.getElementById('bg-music').play().catch(()=>{});
         }
 
-        // 2. Timer Counter
-        let sec = 0;
-        setInterval(() => {
-            sec++;
-            document.getElementById('timer').innerText = sec;
-        }, 1000);
-
-        // 3. Prank: Runway "NO" Button
-        function runAway(btn) {
-            const container = document.getElementById('q-box');
-            const contRect = container.getBoundingClientRect();
+        // 2. NO Button Prank Sequence
+        let noCount = 0;
+        const noMsgs = ["Plzzz laddoo nhi😘", "Plzz sorry na🫶", "Nhi hoga 😁"];
+        function noTapPrank() {
+            let qText = document.getElementById('q-text');
+            let noBtn = document.getElementById('no-btn');
             
-            // Generate random positions within the question box
-            const x = Math.random() * (contRect.width - btn.offsetWidth);
-            const y = Math.random() * (contRect.height - btn.offsetHeight);
-            
-            // Set new positions
-            btn.style.position = 'absolute';
-            btn.style.left = x + 'px';
-            btn.style.top = y + 'px';
-        }
-
-        // 4. Question Answer
-        function answer(ans) {
-            let qBox = document.getElementById('q-box');
-            let meterBox = document.getElementById('meter-box');
-            
-            if(ans === 'yes') {
-                qBox.innerHTML = "<p style='color:#ff4d6d; font-weight:600;'>Let's see if the Meter can fix that big gussa... 👇</p>";
-            } else {
-                qBox.innerHTML = "<p style='color:#2ed573; font-weight:600;'>Yay! But let's check the Meter anyway! 🥰👇</p>";
+            if(noCount < noMsgs.length) {
+                qText.innerText = noMsgs[noCount];
+                noCount++;
             }
             
-            setTimeout(() => {
-                meterBox.style.display = 'block';
-                meterBox.scrollIntoView({ behavior: 'smooth' });
-            }, 500);
-        }
-
-        // 5. Heart Rain Animation
-        function startHeartRain() {
-            const rainCont = document.getElementById('heart-rain');
-            rainCont.style.display = 'block';
-            for (let i = 0; i < 50; i++) {
-                setTimeout(() => {
-                    const heart = document.createElement('span');
-                    heart.className = 'heart-particle';
-                    heart.innerText = '❤️';
-                    heart.style.left = Math.random() * 100 + 'vw';
-                    rainCont.appendChild(heart);
-                    setTimeout(() => heart.remove(), 3000);
-                }, i * 50);
+            if(noCount >= 3) {
+                noBtn.style.position = 'absolute';
+                noBtn.style.left = (Math.random() * 200) + 'px';
+                noBtn.style.top = (Math.random() * 100) + 'px';
             }
         }
 
-        // 6. Forgiveness Meter & Finale Trigger
-        function runMeter() {
-            let scanBtn = document.getElementById('scan-btn');
-            let meterText = document.getElementById('meter-text');
-            let statusText = document.getElementById('meter-status');
-            
-            scanBtn.style.display = 'none';
-            
-            // Start heart rain waterfall
-            startHeartRain();
-            
+        // 3. Show & Run Meter
+        function showMeter() {
+            document.getElementById('meter-box').style.display = 'block';
+            document.getElementById('meter-box').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function startScan() {
+            document.getElementById('scan-btn').style.display = 'none';
+            let pText = document.getElementById('m-percent');
             let val = 0;
-            let mTimer = setInterval(() => {
-                val += Math.floor(Math.random() * 5) + 3;
+            let timer = setInterval(() => {
+                val += 4;
                 if(val >= 100) {
                     val = 100;
-                    clearInterval(mTimer);
-                    
-                    meterText.innerText = "100%";
-                    meterText.style.color = "#2ed573";
-                    statusText.innerText = "⚡ ERROR: Love Limit & Cuteness Levels Overloaded!";
-                    
-                    // Show Cutest Finale Screen
-                    setTimeout(() => {
-                        document.getElementById('main-screen').style.display = 'none';
-                        document.getElementById('final-screen').style.display = 'block';
-                        document.getElementById('heart-rain').style.display = 'none';
-                    }, 1200);
+                    clearInterval(timer);
+                    pText.innerText = "100%";
+                    pText.style.color = "#2ed573";
+                    document.getElementById('final-btn-section').style.display = 'block';
+                    document.getElementById('final-btn-section').scrollIntoView({ behavior: 'smooth' });
                 } else {
-                    meterText.innerText = val + "%";
+                    pText.innerText = val + "%";
                 }
-            }, 60);
+            }, 50);
+        }
+
+        // 4. Grand Finale Trigger
+        function forgiveSuccess() {
+            document.getElementById('screen-3').style.display = 'flex';
+            confetti({
+                particleCount: 120,
+                spread: 80,
+                origin: { y: 0.6 }
+            });
         }
     </script>
-
 </body>
 </html>
