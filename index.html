@@ -20,9 +20,10 @@
             border: 2px solid #ffe4e6;
             display: none; /* Default Hidden */
             animation: slideIn 0.5s ease;
+            position: relative;
         }
 
-        .step-card.active { display: block; } /* Sirf Active Step Dikhga */
+        .step-card.active { display: block; }
 
         .profile-pic { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 4px solid #ff758c; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 10px; }
         
@@ -32,11 +33,11 @@
         .photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 15px 0; }
         .photo-grid img { width: 100%; height: 90px; object-fit: cover; border-radius: 10px; border: 2px solid #ff758c; }
 
-        /* Guaranteed Working Milk & Mocha GIF */
-        .sticker-img { width: 140px; height: 140px; object-fit: contain; margin: 10px auto; display: block; }
+        /* Working Cute Animated Stickers */
+        .sticker-img { width: 140px; height: 140px; object-fit: contain; margin: 10px auto; display: block; border-radius: 15px; }
 
         .btn { background: #ff4757; color: white; border: none; padding: 12px 25px; border-radius: 25px; font-weight: 600; cursor: pointer; font-size: 0.95rem; margin-top: 15px; }
-        .btn-no { background: #e0e0e0; color: #555; position: relative; }
+        .btn-no { background: #e0e0e0; color: #555; position: relative; z-index: 10; }
 
         @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
@@ -61,7 +62,7 @@
         <div class="step-card" id="step-2">
             <img class="profile-pic" src="palak.jpg" alt="Palak" onerror="this.src='https://ui-avatars.com/api/?name=Palak&background=ff758c&color=fff'">
             <div class="cg-line">
-                " मोर मयारू डऊकी मोला माफ कर दे जी mor Malkin ji" ❤️
+                "मोर सुआरी मोला माफ कर दे जी mor Malkin ji" ❤️
             </div>
             <button class="btn" onclick="nextStep(3)">Next ➔</button>
         </div>
@@ -80,20 +81,20 @@
             <button class="btn" onclick="nextStep(4)">Next ➔</button>
         </div>
 
-        <!-- STEP 4: MILK & MOCHA APOLOGY STICKER -->
+        <!-- STEP 4: APOLOGY STICKER -->
         <div class="step-card" id="step-4">
             <h3 style="color: #ff4757;">I am So Sorry 🥺</h3>
-            <!-- Direct Working Bear GIF -->
-            <img class="sticker-img" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3ZpZnpsaGl2MWtwZTh2OHI1cG80cnYwdXp5bDFtMGp1OWRwbXpxcyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/L95234bOKOiLm/giphy.gif" alt="Crying Bear">
+            <!-- Direct Working Cute Sad Bear Sticker -->
+            <img class="sticker-img" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHI1OHIybmdrZ3ZxbjhvdWpkeXJubzY1aTJkbmsyeGN5MnIybDNmdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1dkp25n75xmIO3X/giphy.gif" alt="Crying Cute Bear" onerror="this.src='https://ui-avatars.com/api/?name=Sorry&background=ff758c&color=fff'">
             <p style="font-size: 0.9rem; color: #555; line-height: 1.5; margin-top: 10px;">
                 I know maine mistake kar di... Lekin mera dil sirf aapke liye hi dhadakta hai. Please gussa chhod do na!
             </p>
             <button class="btn" onclick="nextStep(5)">Next ➔</button>
         </div>
 
-        <!-- STEP 5: FUTURE WIFE LETTER -->
+        <!-- STEP 5: MY LOVE LIFE LETTER -->
         <div class="step-card" id="step-5">
-            <h3 style="color: #ff4757;">To My Future Wife 💍❤️</h3>
+            <h3 style="color: #ff4757;">To My Love Life 💍❤️</h3>
             <div style="display: flex; justify-content: center; gap: 10px; margin: 15px 0;">
                 <img src="yuvraj.jpg" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid #ff758c;" onerror="this.src='https://ui-avatars.com/api/?name=Y'">
                 <img src="palak.jpg" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid #ff758c;" onerror="this.src='https://ui-avatars.com/api/?name=P'">
@@ -107,8 +108,10 @@
         <!-- STEP 6: PRANK QUESTION -->
         <div class="step-card" id="step-6">
             <h3 style="color: #ff4757; margin-bottom: 15px;" id="q-text">Are you still mad at me? 🥺</h3>
-            <button class="btn" onclick="nextStep(7)">Thoda Sa / Nhi 😤</button>
-            <button class="btn btn-no" id="no-btn" onclick="noTapPrank()">NO 😜</button>
+            <div style="display:flex; justify-content:center; gap:10px; flex-wrap:wrap;">
+                <button class="btn" style="margin-top:0;" onclick="nextStep(7)">Thoda Sa / Nhi 😤</button>
+                <button class="btn btn-no" style="margin-top:0;" id="no-btn" onclick="noTapPrank()">NO 😜</button>
+            </div>
         </div>
 
         <!-- STEP 7: FORGIVENESS SCAN METER -->
@@ -123,8 +126,8 @@
 
         <!-- STEP 8: FINAL HAPPY SCREEN -->
         <div class="step-card" id="step-8">
-            <!-- Happy Hugging Bears GIF -->
-            <img class="sticker-img" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z0ZmlrbWl2azR0YWRmdTZ4dTFzb3MyeXN1OWR4OWZ3ZWdzbHVvOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kZqbBT64ECtjy/giphy.gif" alt="Happy Hug Bears">
+            <!-- Happy Cute Animated Love Bears -->
+            <img class="sticker-img" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3A5eW8wcWlybnE4dmMwdHBmd3lhMWIyeHFzNTVydTJ6MW1zMnI3OCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/KBDzqHBoNF5VT6YoT2/giphy.gif" alt="Happy Love Bears" onerror="this.src='https://ui-avatars.com/api/?name=Love&background=2ed573&color=fff'">
             <h1 style="color: #ff4757; font-size: 1.8rem; margin: 10px 0;">Thank you laaddoo 😘❤️</h1>
             <p style="font-size: 0.95rem; color: #555; font-weight: 600;">You are the best! I love you so much Malkin Ji! 🌹✨</p>
             <p style="margin-top: 15px; font-weight: 700; color: #ff4757;">Forever Yours, — Yuvraj ❤️</p>
@@ -135,27 +138,27 @@
     <script>
         // Step Navigation Logic (1 by 1)
         function nextStep(stepNumber) {
-            // Hide all steps
             document.querySelectorAll('.step-card').forEach(card => card.classList.remove('active'));
-            
-            // Show target step
             let target = document.getElementById('step-' + stepNumber);
             if(target) target.classList.add('active');
 
-            // Play music on envelope click
             if(stepNumber === 2) {
                 document.getElementById('bg-music').play().catch(()=>{});
             }
 
-            // Confetti for final step
             if(stepNumber === 8) {
                 confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
             }
         }
 
-        // NO Button Prank
+        // NO Button Prank (New Exact Dialogue Order)
         let noCount = 0;
-        const noMsgs = ["Plzzz laddoo nhi😘", "Plzz sorry na🫶", "Nhi hoga 😁"];
+        const noMsgs = [
+            "Plzzz babee sorry na 🥺",
+            "Plzzz laddoo ni n 🥺",
+            "nhi hoga 😁"
+        ];
+        
         function noTapPrank() {
             let qText = document.getElementById('q-text');
             let noBtn = document.getElementById('no-btn');
@@ -164,10 +167,12 @@
                 qText.innerText = noMsgs[noCount];
                 noCount++;
             }
+            
             if(noCount >= 3) {
+                // Button runs away after 3rd click
                 noBtn.style.position = 'absolute';
-                noBtn.style.left = (Math.random() * 150) + 'px';
-                noBtn.style.top = (Math.random() * 80) + 'px';
+                noBtn.style.left = (Math.random() * 140) + 'px';
+                noBtn.style.top = (Math.random() * 60) + 'px';
             }
         }
 
