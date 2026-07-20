@@ -1,204 +1,196 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Message For You ❤️</title>
+    <title>For Palak ❤️</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
 
         body {
-            background-color: #faf6f0;
+            background-color: #fff0f3;
             color: #2c2c2c;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px 10px;
+            padding: 20px 15px;
+            overflow-x: hidden;
         }
 
         .container {
             width: 100%;
-            max-width: 420px;
+            max-width: 400px;
             text-align: center;
-            position: relative;
         }
 
-        /* Subtitle & Headers */
-        .sub-header {
+        /* SCREEN 1: ENVELOPE LETTER */
+        #screen-1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            animation: bounce 2s infinite ease-in-out;
+        }
+
+        .envelope {
+            width: 140px;
+            height: 100px;
+            background: #ff758c;
+            border-radius: 10px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 25px rgba(255, 117, 140, 0.4);
+        }
+
+        .envelope-heart {
+            font-size: 2.5rem;
+        }
+
+        .tap-text {
+            margin-top: 20px;
+            font-size: 0.95rem;
+            color: #ff4757;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        /* SCREEN 2: MAIN CONTENT */
+        #screen-2 {
+            display: none;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .title-sub {
             font-size: 0.75rem;
             letter-spacing: 2px;
             color: #8e8e8e;
             text-transform: uppercase;
-            margin-bottom: 8px;
         }
 
-        .main-title {
-            font-size: 2.8rem;
-            font-weight: 700;
+        .title-main {
+            font-size: 2.2rem;
             font-family: 'Georgia', serif;
-            color: #1a1a1a;
-            margin-bottom: 10px;
+            color: #2b2b2b;
+            margin: 5px 0 15px 0;
         }
 
-        .quote {
-            font-style: italic;
-            font-family: 'Georgia', serif;
-            color: #666;
-            font-size: 0.95rem;
-            margin-bottom: 25px;
+        /* Photo Frame */
+        .photo-gallery {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
         }
 
-        /* Seconds Counter Card */
-        .timer-card {
+        .photo-gallery img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #ffffff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Counter Box */
+        .box {
             background: #ffffff;
-            border: 1px solid #eaeaea;
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 18px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        .timer-val {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ff4757;
+            margin-top: 5px;
+        }
+
+        /* Interactive Question */
+        .question-box {
+            background: #ffffff;
             border-radius: 16px;
             padding: 20px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            margin-bottom: 18px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
         }
 
-        .timer-label {
-            font-size: 0.68rem;
-            letter-spacing: 1.5px;
-            color: #8e8e8e;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .timer-count {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: #333;
-        }
-
-        /* Message Cards */
-        .card-list {
+        .btn-group {
             display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 30px;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 15px;
         }
 
-        .accordion-item {
-            background: #ffffff;
-            border: 1px solid #eaeaea;
-            border-radius: 12px;
-            padding: 16px 20px;
-            text-align: left;
-        }
-
-        .accordion-title {
-            font-size: 0.95rem;
+        .btn {
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
             font-weight: 600;
-            color: #222;
+            cursor: pointer;
+            transition: 0.2s;
         }
 
-        .accordion-content {
-            display: block;
-            margin-top: 10px;
-            font-size: 0.85rem;
-            color: #666;
-            line-height: 1.5;
-            border-top: 1px dashed #eee;
-            padding-top: 10px;
+        .btn-no {
+            background: #e0e0e0;
+            color: #555;
         }
 
-        /* Meter Section */
-        .meter-box {
-            background: #ffffff;
-            border: 1px solid #eaeaea;
-            border-radius: 16px;
-            padding: 25px 20px;
-            margin-top: 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-        }
-
-        .meter-title {
-            font-family: 'Georgia', serif;
-            font-size: 1.3rem;
-            font-style: italic;
-            margin-bottom: 5px;
-        }
-
-        .meter-sub {
-            font-size: 0.75rem;
-            color: #8e8e8e;
-            margin-bottom: 20px;
-            line-height: 1.4;
-        }
-
-        .percentage {
-            font-size: 3rem;
+        /* Meter Box */
+        .meter-percent {
+            font-size: 2.5rem;
             font-weight: 800;
-            color: #222;
-            margin: 15px 0;
+            color: #ff4757;
+            margin: 10px 0;
         }
 
-        .status-text {
-            font-size: 0.8rem;
-            color: #8e8e8e;
-            margin-bottom: 20px;
-        }
-
-        .error-badge {
+        /* SCREEN 3: CUTEST FINAL ANIMATION */
+        #screen-3 {
             display: none;
-            background: #fff0f3;
-            color: #e63946;
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 6px 12px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .cute-gif {
+            width: 220px;
+            height: 220px;
+            object-fit: contain;
             border-radius: 20px;
             margin-bottom: 15px;
-            letter-spacing: 1px;
         }
 
-        /* Button */
-        .main-btn {
-            background: #1a1a1a;
-            color: #ffffff;
-            border: none;
-            padding: 14px 28px;
-            border-radius: 25px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            cursor: pointer;
-            width: 100%;
-            transition: transform 0.2s, background 0.3s;
-        }
-
-        .main-btn:active {
-            transform: scale(0.98);
-        }
-
-        /* Final View Section */
-        #final-section {
-            display: none;
-            margin-top: 30px;
-            animation: fadeIn 0.8s ease;
-        }
-
-        .final-card {
-            background: #ffffff;
-            border: 1px solid #eaeaea;
-            border-radius: 16px;
-            padding: 30px 20px;
-        }
-
-        .rose-icon {
-            font-size: 2rem;
+        .final-msg {
+            font-family: 'Georgia', serif;
+            font-size: 1.5rem;
+            color: #ff4757;
             margin-bottom: 10px;
+        }
+
+        .final-sub {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
@@ -206,104 +198,120 @@
 <body>
 
     <div class="container">
-        
-        <!-- Header -->
-        <p class="sub-header">✦ A MESSAGE FOR YOU ✦</p>
-        <h1 class="main-title">palak</h1>
-        <p class="quote">"There are things I should have said sooner.<br>This is my attempt."</p>
 
-        <!-- Timer / Counter Card -->
-        <div class="timer-card">
-            <p class="timer-label">SECONDS SINCE I STARTED MISSING YOU</p>
-            <div class="timer-count" id="seconds-count">0</div>
+        <!-- STEP 1: ENVELOPE / LETTER SCREEN -->
+        <div id="screen-1" onclick="openLetter()">
+            <div class="envelope">
+                <div class="envelope-heart">💌</div>
+            </div>
+            <p class="tap-text">A Special Letter For Palak ❤️<br><span style="font-size: 0.8rem; color: #8e8e8e;">(Tap to Open)</span></p>
         </div>
 
-        <!-- Message Cards -->
-        <div class="card-list">
-            <div class="accordion-item">
-                <div class="accordion-title">I'm sorry for the pain I caused.</div>
-                <div class="accordion-content">Not just sorry I got caught — sorry it happened at all. You deserved softness, always.</div>
+        <!-- STEP 2: MAIN INTERACTIVE PAGE -->
+        <div id="screen-2">
+            <p class="title-sub">✦ FOR MY FAVOURITE PERSON ✦</p>
+            <h1 class="title-main">Palak ❤️</h1>
+
+            <!-- Photos -->
+            <div class="photo-gallery">
+                <img src="yuvraj.jpg" alt="Yuvraj" onerror="this.src='https://ui-avatars.com/api/?name=Yuvraj&background=ff758c&color=fff'">
+                <img src="palak.jpg" alt="Palak" onerror="this.src='https://ui-avatars.com/api/?name=Palak&background=ff416c&color=fff'">
             </div>
 
-            <div class="accordion-item">
-                <div class="accordion-title">I would still choose you in every universe.</div>
-                <div class="accordion-content">Every single one. Without hesitation. Always you.</div>
+            <!-- Seconds Missing Timer -->
+            <div class="box">
+                <p style="font-size: 0.7rem; color: #8e8e8e; letter-spacing: 1px;">SECONDS SINCE I STARTED MISSING YOU</p>
+                <div class="timer-val" id="timer">0</div>
             </div>
 
-            <div class="accordion-item">
-                <div class="accordion-title">Please don't let this be our ending.</div>
-                <div class="accordion-content">We are worth more than this silence. You know we are.</div>
+            <!-- Cute Interactive Question -->
+            <div class="question-box" id="q-box">
+                <p style="font-weight: 600; font-size: 0.95rem;">Are you still mad at me? 🥺</p>
+                <div class="btn-group">
+                    <button class="btn" onclick="answerQuestion('yes')">A Little Bit 😤</button>
+                    <button class="btn btn-no" id="no-btn" onclick="answerQuestion('no')">Not Anymore 🥰</button>
+                </div>
+            </div>
+
+            <!-- Forgiveness Meter -->
+            <div class="box" id="meter-box" style="display: none;">
+                <p style="font-size: 0.75rem; color: #8e8e8e;">✦ SCIENTIFIC CALCULATION ✦</p>
+                <h3 style="font-family: 'Georgia', serif; margin-top: 5px;">Forgiveness Meter™</h3>
+                <div class="meter-percent" id="meter-text">0%</div>
+                <p id="meter-status" style="font-size: 0.8rem; color: #8e8e8e; margin-bottom: 15px;">Calculating love & cuteness levels...</p>
+                <button class="btn" id="scan-btn" onclick="runMeter()">SCAN NOW</button>
             </div>
         </div>
 
-        <!-- Meter Section -->
-        <div class="meter-box" id="meter-box">
-            <p class="sub-header">✦ COMPLETELY SCIENTIFIC ✦</p>
-            <h3 class="meter-title">The Forgiveness Meter™</h3>
-            <p class="meter-sub">Advanced AI is calculating exactly how much you deserve to be forgiven right now...</p>
-            
-            <div class="percentage" id="meter-percent">0%</div>
-            <div class="error-badge" id="error-badge">⚡ ERROR: TOO MUCH LOVE DETECTED</div>
-            <p class="status-text" id="status-text">Scanning emotional wavelengths...</p>
-
-            <button class="main-btn" id="action-btn" onclick="startMeter()">SCAN FORGIVENESS</button>
-        </div>
-
-        <!-- Final Hidden Card -->
-        <div id="final-section">
-            <div class="final-card">
-                <div class="rose-icon">🌹</div>
-                <h2 style="font-family:'Georgia', serif; font-size: 1.8rem; margin-bottom: 10px;">You are still my favourite</h2>
-                <p style="font-size: 0.9rem; color: #666; font-style: italic; margin-bottom: 20px;">In every version of this life, in every universe that exists — I would still choose you.</p>
-                <p style="font-size: 0.8rem; color: #8e8e8e;">With everything I have, — Yuvraj ❤️</p>
-            </div>
+        <!-- STEP 3: CUTEST KAN PAKAD KE SORRY + KISS ANIMATION -->
+        <div id="screen-3">
+            <img class="cute-gif" src="https://media.tenor.com/4N3O9iLhFGEAAAAC/sorry-cute.gif" alt="Sorry Cute Animation">
+            <h2 class="final-msg">Mela Bachha, I'm So Sorry! 🥺❤️</h2>
+            <p class="final-sub">Kaan pakad ke sorry bol raha hu! Ab toh gussa chhod do aur ek pyaari si smile de do... 😘💋</p>
+            <p style="font-size: 0.85rem; font-weight: 600; color: #ff4757;">Forever Yours, — Yuvraj ❤️</p>
         </div>
 
     </div>
 
     <script>
-        // 1. Live Seconds Counter
-        let seconds = 0;
+        // 1. Envelope Open
+        function openLetter() {
+            document.getElementById('screen-1').style.display = 'none';
+            document.getElementById('screen-2').style.display = 'block';
+        }
+
+        // 2. Timer Counter
+        let sec = 0;
         setInterval(() => {
-            seconds++;
-            document.getElementById('seconds-count').innerText = seconds;
+            sec++;
+            document.getElementById('timer').innerText = sec;
         }, 1000);
 
-        // 2. Forgiveness Meter Animation
-        function startMeter() {
-            let btn = document.getElementById('action-btn');
-            let percentText = document.getElementById('meter-percent');
-            let statusText = document.getElementById('status-text');
-            let errorBadge = document.getElementById('error-badge');
-            let finalSection = document.getElementById('final-section');
+        // 3. Question Logic
+        function answerQuestion(ans) {
+            let qBox = document.getElementById('q-box');
+            let meterBox = document.getElementById('meter-box');
+            
+            if(ans === 'yes') {
+                qBox.innerHTML = "<p style='color:#ff4757; font-weight:600;'>Oh no! Let's check how much forgiveness is needed... 👇</p>";
+            } else {
+                qBox.innerHTML = "<p style='color:#2ed573; font-weight:600;'>Yay! But wait, let's test the Meter anyway! 🥰👇</p>";
+            }
+            
+            setTimeout(() => {
+                meterBox.style.display = 'block';
+                meterBox.scrollIntoView({ behavior: 'smooth' });
+            }, 500);
+        }
 
-            btn.style.display = 'none';
-
-            let count = 0;
-            let interval = setInterval(() => {
-                count += Math.floor(Math.random() * 5) + 2;
-                if (count > 99) {
-                    count = 99;
-                    clearInterval(interval);
+        // 4. Forgiveness Meter & Final Animation Trigger
+        function runMeter() {
+            let scanBtn = document.getElementById('scan-btn');
+            let meterText = document.getElementById('meter-text');
+            let statusText = document.getElementById('meter-status');
+            
+            scanBtn.style.display = 'none';
+            
+            let val = 0;
+            let timer = setInterval(() => {
+                val += Math.floor(Math.random() * 6) + 3;
+                if(val >= 100) {
+                    val = 100;
+                    clearInterval(timer);
                     
-                    // Show Error State
+                    meterText.innerText = "100%";
+                    meterText.style.color = "#2ed573";
+                    statusText.innerText = "⚡ OVERLOAD: 100% Forgiveness Required!";
+                    
+                    // Show Cute Finale Screen
                     setTimeout(() => {
-                        percentText.innerText = "???%";
-                        percentText.style.color = "#e63946";
-                        errorBadge.style.display = "inline-block";
-                        statusText.innerText = "System Overload: Cuteness & Love Limit Exceeded!";
-                        
-                        // Show Final Card
-                        setTimeout(() => {
-                            finalSection.style.display = "block";
-                            finalSection.scrollIntoView({ behavior: 'smooth' });
-                        }, 1200);
-
-                    }, 800);
+                        document.getElementById('screen-2').style.display = 'none';
+                        document.getElementById('screen-3').style.display = 'block';
+                    }, 1200);
                 } else {
-                    percentText.innerText = count + "%";
+                    meterText.innerText = val + "%";
                 }
-            }, 60);
+            }, 50);
         }
     </script>
 
