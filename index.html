@@ -9,7 +9,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif;
         }
 
         body {
@@ -23,7 +23,7 @@
             overflow-x: hidden;
         }
 
-        /* Opening Welcome Screen */
+        /* 1. Opening Screen */
         #welcome-screen {
             position: fixed;
             top: 0;
@@ -35,13 +35,15 @@
             justify-content: center;
             align-items: center;
             color: white;
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: bold;
             z-index: 999;
             transition: opacity 1s ease, visibility 1s;
+            text-align: center;
+            padding: 20px;
         }
 
-        /* Main Container Card */
+        /* 2. Main Card Container */
         .card {
             background: rgba(255, 255, 255, 0.95);
             padding: 30px 20px;
@@ -52,10 +54,17 @@
             text-align: center;
             position: relative;
             z-index: 2;
-            margin-top: 20px;
+            margin-top: 10px;
         }
 
-        /* Circular Photos Section */
+        /* Envelope Text Section */
+        .envelope-title {
+            color: #ff416c;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        /* Circular Photos */
         .photos {
             display: flex;
             justify-content: center;
@@ -64,8 +73,8 @@
         }
 
         .photos img {
-            width: 80px;
-            height: 80px;
+            width: 85px;
+            height: 85px;
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid #ff758c;
@@ -84,9 +93,10 @@
             margin-bottom: 25px;
             min-height: 220px;
             border: 1px dashed #ff758c;
+            word-wrap: break-word;
         }
 
-        /* Glow Button */
+        /* Glowing Button */
         .glow-btn {
             background: linear-gradient(45deg, #ff416c, #ff4b2b);
             color: white;
@@ -116,7 +126,7 @@
             animation: fadeIn 1s ease-in;
         }
 
-        /* Floating Hearts Animation */
+        /* Floating Hearts Background Animation */
         .heart {
             position: fixed;
             color: #ff4b2b;
@@ -147,7 +157,7 @@
 
     <!-- 2. Main Apology Card -->
     <div class="card">
-        <h2 style="color: #ff416c;">Dear Palak ❤️</h2>
+        <h2 class="envelope-title">Dear Palak ❤️</h2>
 
         <!-- Circular Photos -->
         <div class="photos">
@@ -155,7 +165,7 @@
             <img src="palak.jpg" alt="Palak" onerror="this.src='https://ui-avatars.com/api/?name=Palak&background=ff416c&color=fff'">
         </div>
 
-        <!-- Typing Letter -->
+        <!-- Typing Letter Box -->
         <div class="letter-box">
             <p id="typed-text"></p>
         </div>
@@ -176,7 +186,7 @@
             }, 1000);
         }, 3000);
 
-        // Typing Effect Code
+        // Typing Effect Letter Text
         const textToType = `Dear Palak,\n\nI'm truly sorry.\n\nMujhse galti hui aur us baat ka mujhe dil se afsos hai.\nMain excuses nahi dena chahta.\nBas itna kehna chahta hoon ki tum meri life ka sabse important hissa ho.\n\nPlease ek last chance de do.\nMain apne actions se prove karunga ki main better insaan ban sakta hoon.\n\nI Miss You.\n\nForever Yours,\nYuvraj ❤️`;
 
         let index = 0;
@@ -194,9 +204,9 @@
             document.getElementById("chance-btn").style.display = "none";
             document.getElementById("final-message").style.display = "block";
 
-            // Spawn lots of hearts
+            // Burst of hearts
             for(let i = 0; i < 40; i++) {
-                setTimeout(createHeart, i * 60);
+                setTimeout(createHeart, i * 50);
             }
         }
 
@@ -214,7 +224,7 @@
         }
 
         // Continuous light background hearts
-        setInterval(createHeart, 500);
+        setInterval(createHeart, 600);
     </script>
 </body>
 </html>
