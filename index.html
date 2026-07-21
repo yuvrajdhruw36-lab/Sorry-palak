@@ -1,305 +1,119 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Malkin Ji ❤️</title>
-    <!-- Confetti Library -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        
-        body { 
-            background: linear-gradient(135deg, #ffe6ea 0%, #ffc2d1 100%);
-            color: #2c2c2c; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            min-height: 100vh; 
-            padding: 15px; 
-            overflow-x: hidden;
-            position: relative;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Palak ❤️</title>
 
-        /* FLOATING BACKGROUND EMOJIS */
-        .emoji-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-            overflow: hidden;
-        }
-
-        .floating-emoji {
-            position: absolute;
-            bottom: -50px;
-            font-size: 1.8rem;
-            opacity: 0.6;
-            animation: floatUp 7s linear infinite;
-        }
-
-        .container { width: 100%; max-width: 390px; text-align: center; position: relative; z-index: 10; }
-
-        /* Step Card Styling */
-        .step-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(8px);
-            border-radius: 24px;
-            padding: 25px 20px;
-            box-shadow: 0 10px 30px rgba(255, 71, 87, 0.2);
-            border: 2px solid #ffffff;
-            display: none;
-            animation: slideIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-        }
-
-        .step-card.active { display: block; }
-
-        .profile-pic { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 4px solid #ff4757; box-shadow: 0 8px 20px rgba(255,71,87,0.3); margin-bottom: 12px; }
-        
-        .cg-line { font-size: 1.15rem; font-weight: 700; color: #d63384; margin: 12px 0; line-height: 1.5; background: #fff0f3; padding: 14px; border-radius: 16px; border: 2px dashed #ff758c; }
-
-        /* BADI PHOTOS LINE SE (CAROUSEL / STACK LOOK) */
-        .large-photo-list {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            max-height: 380px;
-            overflow-y: auto;
-            padding: 5px;
-            margin: 15px 0;
-            scrollbar-width: thin;
-            scrollbar-color: #ff758c #fff;
-        }
-
-        .large-photo-card {
-            width: 100%;
-            height: 230px;
-            object-fit: cover;
-            border-radius: 18px;
-            border: 3px solid #ffffff;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-        }
-
-        /* CUSTOM ANIMATED CREATIVE STICKERS */
-        .sticker-box {
-            width: 140px;
-            height: 140px;
-            margin: 10px auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: bounceSoft 2s infinite ease-in-out;
-        }
-
-        .btn { background: linear-gradient(45deg, #ff4757, #ff6b81); color: white; border: none; padding: 14px 28px; border-radius: 30px; font-weight: 700; cursor: pointer; font-size: 1rem; margin-top: 15px; box-shadow: 0 5px 15px rgba(255, 71, 87, 0.3); transition: transform 0.2s; }
-        .btn:active { transform: scale(0.95); }
-        .btn-no { background: #e0e0e0; color: #555; position: relative; z-index: 10; box-shadow: none; }
-
-        @keyframes slideIn { from { opacity: 0; transform: translateY(30px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
-        @keyframes floatUp { 0% { transform: translateY(0) rotate(0deg); opacity: 0.8; } 100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; } }
-        @keyframes bounceSoft { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-    </style>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+body{
+background:linear-gradient(135deg,#ff6b81,#ff9aa2,#ffd1dc);
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+overflow:hidden;
+}
+.container{
+text-align:center;
+background:white;
+padding:30px;
+border-radius:20px;
+max-width:800px;
+box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+h1{
+color:#ff2d55;
+font-size:45px;
+margin-bottom:15px;
+}
+p{
+font-size:20px;
+color:#555;
+margin-bottom:20px;
+}
+.gallery{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+margin:20px 0;
+}
+.gallery img{
+width:100%;
+height:170px;
+object-fit:cover;
+border-radius:15px;
+}
+button{
+padding:15px 30px;
+border:none;
+border-radius:30px;
+background:#ff2d55;
+color:white;
+font-size:18px;
+cursor:pointer;
+}
+#msg{
+display:none;
+margin-top:20px;
+font-size:24px;
+color:#ff2d55;
+font-weight:bold;
+}
+.heart{
+position:fixed;
+top:-20px;
+font-size:24px;
+animation:fall linear infinite;
+}
+@keyframes fall{
+to{
+transform:translateY(110vh);
+}
+}
+</style>
 </head>
 <body>
 
-    <!-- Floating Emoji Background -->
-    <div class="emoji-bg" id="emoji-container"></div>
+<div class="container">
 
-    <!-- Background Music -->
-    <audio id="bg-music" loop preload="auto">
-        <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_51199a9a3b.mp3" type="audio/mpeg">
-    </audio>
+<h1>I Love You Palak ❤️</h1>
 
-    <div class="container">
+<p>Every moment with you is special. ❤️</p>
 
-        <!-- STEP 1: ENVELOPE -->
-        <div class="step-card active" id="step-1" onclick="nextStep(2)">
-            <div style="font-size: 5.5rem; cursor: pointer; filter: drop-shadow(0 5px 15px rgba(255,71,87,0.4));">💌</div>
-            <h2 style="color: #ff4757; margin-top: 15px; font-size: 1.6rem;">For My Dearest Palak ❤️</h2>
-            <p style="font-size: 0.9rem; color: #8e8e8e; margin-top: 5px; font-weight: 600;">(Tap Envelope to Open)</p>
-        </div>
+<div class="gallery">
+<img src="1.jpg">
+<img src="2.jpg">
+<img src="3.jpg">
+<img src="4.jpg">
+<img src="5.jpg">
+<img src="6.jpg">
+</div>
 
-        <!-- STEP 2: PALAK PHOTO & CHHATISGARHI LINE -->
-        <div class="step-card" id="step-2">
-            <img class="profile-pic" src="palak.jpg" alt="Palak" onerror="this.src='https://ui-avatars.com/api/?name=Palak&background=ff758c&color=fff'">
-            <div class="cg-line">
-                "मोर सुआरी मोला माफ कर दे जी mor Malkin ji" ❤️
-            </div>
-            <button class="btn" onclick="nextStep(3)">Next ➔</button>
-        </div>
+<button onclick="love()">Click Here ❤️</button>
 
-        <!-- STEP 3: BADI PHOTOS LINE SE -->
-        <div class="step-card" id="step-3">
-            <h3 style="color: #ff4757; font-size: 1.2rem;">My Favorite Moments 📸</h3>
-            <p style="font-size: 0.75rem; color: #8e8e8e; margin-top: 2px;">(Scroll down to see all photos)</p>
-            
-            <div class="large-photo-list">
-                <img class="large-photo-card" src="palak1.jpg" alt="Palak 1" onerror="this.src='https://ui-avatars.com/api/?name=P1&background=ff758c&color=fff'">
-                <img class="large-photo-card" src="palak2.jpg" alt="Palak 2" onerror="this.src='https://ui-avatars.com/api/?name=P2&background=ff4757&color=fff'">
-                <img class="large-photo-card" src="palak3.jpg" alt="Palak 3" onerror="this.src='https://ui-avatars.com/api/?name=P3&background=ff758c&color=fff'">
-                <img class="large-photo-card" src="palak4.jpg" alt="Palak 4" onerror="this.src='https://ui-avatars.com/api/?name=P4&background=ff4757&color=fff'">
-                <img class="large-photo-card" src="palak5.jpg" alt="Palak 5" onerror="this.src='https://ui-avatars.com/api/?name=P5&background=ff758c&color=fff'">
-                <img class="large-photo-card" src="palak6.jpg" alt="Palak 6" onerror="this.src='https://ui-avatars.com/api/?name=P6&background=ff4757&color=fff'">
-            </div>
+<div id="msg">
+Forever & Always ❤️<br>
+Love You So Much, Palak ❤️<br><br>
+— Yuvraj
+</div>
 
-            <button class="btn" onclick="nextStep(4)">Next ➔</button>
-        </div>
+</div>
 
-        <!-- STEP 4: APOLOGY STICKER -->
-        <div class="step-card" id="step-4">
-            <h3 style="color: #ff4757; font-size: 1.4rem;">I am So Sorry 🥺</h3>
-            
-            <!-- High Quality Vector Bear Sticker -->
-            <div class="sticker-box">
-                <svg viewBox="0 0 100 100" width="130" height="130">
-                    <circle cx="50" cy="50" r="45" fill="#ffe4e6"/>
-                    <circle cx="30" cy="25" r="14" fill="#ff758c"/>
-                    <circle cx="70" cy="25" r="14" fill="#ff758c"/>
-                    <circle cx="50" cy="55" r="30" fill="#ffa8ba"/>
-                    <!-- Crying Eyes -->
-                    <circle cx="40" cy="48" r="5" fill="#2c2c2c"/>
-                    <circle cx="60" cy="48" r="5" fill="#2c2c2c"/>
-                    <path d="M 40 55 Q 38 65 38 70" stroke="#00a8ff" stroke-width="3" fill="none" stroke-linecap="round"/>
-                    <path d="M 60 55 Q 62 65 62 70" stroke="#00a8ff" stroke-width="3" fill="none" stroke-linecap="round"/>
-                    <ellipse cx="50" cy="56" rx="7" ry="5" fill="#ff4757"/>
-                    <path d="M 43 68 Q 50 62 57 68" stroke="#2c2c2c" stroke-width="3" fill="none" stroke-linecap="round"/>
-                </svg>
-            </div>
+<script>
+function love(){
+document.getElementById("msg").style.display="block";
+}
+for(let i=0;i<60;i++){
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="❤️";
+h.style.left=Math.random()*100+"vw";
+h.style.animationDuration=(3+Math.random()*5)+"s";
+document.body.appendChild(h);
+}
+</script>
 
-            <p style="font-size: 0.95rem; color: #555; line-height: 1.6; margin-top: 10px;">
-                I know maine mistake kar di... Lekin mera dil sirf aapke liye hi dhadakta hai. Please gussa chhod do na!
-            </p>
-            <button class="btn" onclick="nextStep(5)">Next ➔</button>
-        </div>
-
-        <!-- STEP 5: MY LOVE LIFE LETTER -->
-        <div class="step-card" id="step-5">
-            <h3 style="color: #ff4757; font-size: 1.3rem;">To My Love Life 💍❤️</h3>
-            <div style="display: flex; justify-content: center; gap: 15px; margin: 20px 0;">
-                <img src="yuvraj.jpg" style="width: 75px; height: 75px; border-radius: 50%; object-fit: cover; border: 3px solid #ff758c;" onerror="this.src='https://ui-avatars.com/api/?name=Y'">
-                <img src="palak.jpg" style="width: 75px; height: 75px; border-radius: 50%; object-fit: cover; border: 3px solid #ff758c;" onerror="this.src='https://ui-avatars.com/api/?name=P'">
-            </div>
-            <p style="font-size: 0.95rem; color: #555; line-height: 1.6;">
-                In every life, in every universe — I choose you to be my partner. You mean everything to me, Palak!
-            </p>
-            <button class="btn" onclick="nextStep(6)">Next ➔</button>
-        </div>
-
-        <!-- STEP 6: PRANK QUESTION -->
-        <div class="step-card" id="step-6">
-            <h3 style="color: #ff4757; margin-bottom: 20px; font-size: 1.25rem;" id="q-text">Are you still mad at me? 🥺</h3>
-            <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
-                <button class="btn" style="margin-top:0;" onclick="nextStep(7)">Thoda Sa / Nhi 😤</button>
-                <button class="btn btn-no" style="margin-top:0;" id="no-btn" onclick="noTapPrank()">NO 😜</button>
-            </div>
-        </div>
-
-        <!-- STEP 7: FORGIVENESS SCAN METER -->
-        <div class="step-card" id="step-7">
-            <h3 style="color: #d63384; font-size: 1.3rem;">Forgiveness Scan Meter™</h3>
-            <div style="font-size: 3rem; font-weight: 800; color: #ff4757; margin: 15px 0;" id="m-percent">0%</div>
-            <button class="btn" id="scan-btn" onclick="startScan()">START SCAN</button>
-            <button class="btn" id="final-btn" style="display: none; background: #2ed573; width: 100%; font-size: 1.1rem; padding: 15px;" onclick="nextStep(8)">
-                Haan Maaf Krr Di 😘❤️
-            </button>
-        </div>
-
-        <!-- STEP 8: FINAL HAPPY SCREEN -->
-        <div class="step-card" id="step-8">
-            <!-- Happy Kiss Sticker -->
-            <div class="sticker-box">
-                <svg viewBox="0 0 100 100" width="130" height="130">
-                    <circle cx="50" cy="50" r="45" fill="#e8f5e9"/>
-                    <path d="M 50 25 C 50 15, 30 10, 30 25 C 30 38, 50 48, 50 58 C 50 48, 70 38, 70 25 C 70 10, 50 15, 50 25 Z" fill="#ff4757"/>
-                    <circle cx="35" cy="45" r="4" fill="#2c2c2c"/>
-                    <circle cx="65" cy="45" r="4" fill="#2c2c2c"/>
-                    <path d="M 42 58 Q 50 68 58 58" stroke="#2c2c2c" stroke-width="3" fill="none" stroke-linecap="round"/>
-                </svg>
-            </div>
-
-            <h1 style="color: #ff4757; font-size: 1.8rem; margin: 10px 0;">Thank you laaddoo 😘❤️</h1>
-            <p style="font-size: 1rem; color: #555; font-weight: 600;">You are the best! I love you so much Malkin Ji! 🌹✨</p>
-            <p style="margin-top: 20px; font-weight: 700; color: #ff4757; font-size: 1.1rem;">Forever Yours, — Yuvraj ❤️</p>
-        </div>
-
-    </div>
-
-    <script>
-        // 1. Generate Floating Emojis Background
-        const emojis = ['😘', '❤️', '😍', '🥰', '💋'];
-        const emojiContainer = document.getElementById('emoji-container');
-        
-        for (let i = 0; i < 20; i++) {
-            let el = document.createElement('div');
-            el.className = 'floating-emoji';
-            el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-            el.style.left = Math.random() * 100 + 'vw';
-            el.style.animationDuration = (Math.random() * 4 + 4) + 's';
-            el.style.animationDelay = (Math.random() * 5) + 's';
-            emojiContainer.appendChild(el);
-        }
-
-        // 2. Step Navigation Logic
-        function nextStep(stepNumber) {
-            document.querySelectorAll('.step-card').forEach(card => card.classList.remove('active'));
-            let target = document.getElementById('step-' + stepNumber);
-            if(target) target.classList.add('active');
-
-            if(stepNumber === 2) {
-                document.getElementById('bg-music').play().catch(()=>{});
-            }
-
-            if(stepNumber === 8) {
-                confetti({ particleCount: 150, spread: 90, origin: { y: 0.6 } });
-            }
-        }
-
-        // 3. NO Button Prank Dialogues Sequence
-        let noCount = 0;
-        const noMsgs = [
-            "Plzzz babee sorry na 🥺",
-            "Plzzz laddoo ni n 🥺",
-            "nhi hoga 😁"
-        ];
-        
-        function noTapPrank() {
-            let qText = document.getElementById('q-text');
-            let noBtn = document.getElementById('no-btn');
-            
-            if(noCount < noMsgs.length) {
-                qText.innerText = noMsgs[noCount];
-                noCount++;
-            }
-            
-            if(noCount >= 3) {
-                noBtn.style.position = 'absolute';
-                noBtn.style.left = (Math.random() * 140) + 'px';
-                noBtn.style.top = (Math.random() * 60) + 'px';
-            }
-        }
-
-        // 4. Meter Scan Logic
-        function startScan() {
-            document.getElementById('scan-btn').style.display = 'none';
-            let pText = document.getElementById('m-percent');
-            let val = 0;
-            let timer = setInterval(() => {
-                val += 4;
-                if(val >= 100) {
-                    val = 100;
-                    clearInterval(timer);
-                    pText.innerText = "100%";
-                    pText.style.color = "#2ed573";
-                    document.getElementById('final-btn').style.display = 'block';
-                } else {
-                    pText.innerText = val + "%";
-                }
-            }, 50);
-        }
-    </script>
 </body>
 </html>
